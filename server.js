@@ -563,8 +563,8 @@ async function startServer() {
       console.log('║           📱 MOBILE KLINIC SERVER               ║');
       console.log('║    Kralgund, Handwara | Owner: Towhead Bhat      ║');
       console.log('╠══════════════════════════════════════════════════╣');
-      console.log(`║  🌐 Website:  http://localhost:${PORT}              ║`);
-      console.log(`║  🔧 Admin:    http://localhost:${PORT}/admin/        ║`);
+      console.log(` Website: http://localhost:${PORT}`);
+      console.log(` Admin:   http://localhost:${PORT}/admin/`);
       console.log('║  👤 Admin Login: towhead / mobile@klinic123      ║');
       console.log('╚══════════════════════════════════════════════════╝');
       console.log('');
