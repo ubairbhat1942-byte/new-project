@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Check admin auth for all other pages
   checkAdminAuth().then(isAuth => {
     if (!isAuth) {
-      window.location.href = 'login.html';
+      console.log("not authed"); window.location.replace("login.html");
       return;
     }
 
@@ -118,7 +118,7 @@ function initAdminSidebar() {
       e.preventDefault();
       try {
         await API.adminLogout();
-        window.location.href = 'login.html';
+        console.log("not authed"); window.location.replace("login.html");
       } catch (err) {
         showToast('Logout failed', 'error');
       }

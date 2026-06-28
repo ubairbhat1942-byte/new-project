@@ -4,64 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Login — Mobile Klinic</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="admin-login-page">
-
-  <main class="login-container">
-    <div class="auth-card glass-card">
-      <header class="auth-card__header">
-        <h1 class="auth-card__logo">📱 Mobile Klinic Admin</h1>
-        <p class="auth-card__subtitle">Sign in to manage your shop</p>
-      </header>
-
-      <form id="login-form" class="auth-form" novalidate>
-        <div id="login-error" class="alert alert--error" role="alert" hidden>
-          <!-- JS populates error message here -->
-        </div>
-
-        <div class="form-group">
-          <label for="username" class="form-label">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            class="form-input"
-            placeholder="Enter username"
-            autocomplete="username"
-            required
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="password" class="form-label">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-input"
-            placeholder="Enter password"
-            autocomplete="current-password"
-            required
-          >
-        </div>
-
-        <button type="submit" class="btn btn--primary btn--full">Login</button>
-      </form>
-
-      <footer class="auth-card__footer">
-        <p class="auth-card__hint">
-          Default: <strong>towhead</strong> / <strong>mobile@klinic123</strong>
-        </p>
-        <a href="../index.html" class="auth-card__back-link">← Back to Customer Site</a>
-      </footer>
+<body class="admin-page" style="display:flex;align-items:center;justify-content:center;min-height:100vh">
+  <div class="card glass-card" style="width:100%;max-width:400px;padding:2rem">
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="font-size:3rem">📱</div>
+      <h1 style="margin:0.5rem 0 0.25rem">Mobile Klinic</h1>
+      <p style="color:var(--text-muted);margin:0">Admin Panel</p>
     </div>
-  </main>
-
+    <div id="login-error" style="background:#ef444420;border:1px solid #ef4444;color:#ef4444;padding:0.75rem;border-radius:8px;margin-bottom:1rem;display:none"></div>
+    <form id="login-form">
+      <div class="form-group" style="margin-bottom:1rem">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-input" placeholder="towhead" autocomplete="username">
+      </div>
+      <div class="form-group" style="margin-bottom:1.5rem">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-input" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn--primary btn--full" id="login-btn">Login</button>
+    </form>
+  </div>
   <script src="../js/api.js"></script>
-  <script src="../js/admin.js"></script>
+  <script>
+    // Check if already logged in
+    API.getAdminMe().then(data => {
+      if (data.loggedIn) window.location.href = 'dashboard.html';
+    }).catch(() => {});
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errorDiv = document.getElementById('login-error');
+      errorDiv.style.display = 'none';
+      const btn = document.getElementById('login-btn');
+      const username = e.target.username.value.trim();
+      const password = e.target.password.value;
+      btn.disabled = true;
+      btn.textContent = 'Logging in...';
+      try {
+        await API.adminLogin(username, password);
+        window.location.replace('dashboard.html');
+      } catch(err) {
+        errorDiv.textContent = err.message;
+        errorDiv.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Login';
+      }
+    });
+  </script>
 </body>
 </html>
