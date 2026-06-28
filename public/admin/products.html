@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Mobile Klinic Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-page">
+
+  <div class="admin-layout">
+    <!-- ───── Sidebar ───── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__logo">📱 Mobile Klinic</span>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Admin navigation">
+        <ul class="sidebar__menu">
+          <li class="sidebar__item">
+            <a href="dashboard.html" class="sidebar__link">
+              <span class="sidebar__icon">📊</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar__item sidebar__item--active">
+            <a href="products.html" class="sidebar__link" aria-current="page">
+              <span class="sidebar__icon">📦</span> Products
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="repairs.html" class="sidebar__link">
+              <span class="sidebar__icon">🔧</span> Repairs
+            </a>
+          </li>
+          <li class="sidebar__item sidebar__item--divider">
+            <a href="../index.html" class="sidebar__link">
+              <span class="sidebar__icon">🌐</span> Customer Site
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <p class="sidebar__user">Logged in as <strong>Towhead</strong></p>
+        <button id="logout-btn" class="btn btn--outline btn--sm btn--full">Logout</button>
+      </div>
+    </aside>
+
+    <!-- ───── Main Content ───── -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <h1 class="admin-header__title">Manage Products</h1>
+        <button class="btn btn--primary" id="add-product-btn">+ Add Product</button>
+      </header>
+
+      <!-- Filters -->
+      <section class="filters-bar" aria-label="Product filters">
+        <div class="filter-group">
+          <label for="filter-category" class="sr-only">Filter by category</label>
+          <select id="filter-category" class="form-select">
+            <option value="">All Categories</option>
+            <option value="Smartphones">Smartphones</option>
+            <option value="Earphones & Headphones">Earphones &amp; Headphones</option>
+            <option value="Smart Watches">Smart Watches</option>
+            <option value="Chargers & Cables">Chargers &amp; Cables</option>
+            <option value="Cases & Screen Guards">Cases &amp; Screen Guards</option>
+            <option value="Fans">Fans</option>
+            <option value="Heaters">Heaters</option>
+            <option value="Power Banks">Power Banks</option>
+            <option value="Speakers">Speakers</option>
+            <option value="Other Gadgets">Other Gadgets</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-brand" class="sr-only">Filter by brand</label>
+          <select id="filter-brand" class="form-select">
+            <option value="">All Brands</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Xiaomi">Xiaomi</option>
+            <option value="Redmi">Redmi</option>
+            <option value="Realme">Realme</option>
+            <option value="Oppo">Oppo</option>
+            <option value="Vivo">Vivo</option>
+            <option value="OnePlus">OnePlus</option>
+            <option value="Apple">Apple</option>
+            <option value="Nothing">Nothing</option>
+            <option value="Motorola">Motorola</option>
+            <option value="Nokia">Nokia</option>
+            <option value="iQOO">iQOO</option>
+            <option value="Poco">Poco</option>
+            <option value="Tecno">Tecno</option>
+            <option value="Infinix">Infinix</option>
+            <option value="Lava">Lava</option>
+            <option value="Micromax">Micromax</option>
+            <option value="boAt">boAt</option>
+            <option value="Noise">Noise</option>
+            <option value="Fire-Boltt">Fire-Boltt</option>
+            <option value="JBL">JBL</option>
+            <option value="Sony">Sony</option>
+            <option value="Zebronics">Zebronics</option>
+            <option value="Ambrane">Ambrane</option>
+            <option value="Portronics">Portronics</option>
+            <option value="pTron">pTron</option>
+            <option value="Syska">Syska</option>
+            <option value="Anker">Anker</option>
+            <option value="Crompton">Crompton</option>
+            <option value="Havells">Havells</option>
+            <option value="Bajaj">Bajaj</option>
+            <option value="Orient">Orient</option>
+            <option value="Usha">Usha</option>
+            <option value="Maharaja Whiteline">Maharaja Whiteline</option>
+            <option value="Orpat">Orpat</option>
+            <option value="Singer">Singer</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="filter-group filter-group--search">
+          <label for="search-products" class="sr-only">Search products</label>
+          <input
+            type="search"
+            id="search-products"
+            class="form-input"
+            placeholder="🔍 Search products…"
+          >
+        </div>
+      </section>
+
+      <!-- Products Table -->
+      <section class="products-section" aria-label="Products list">
+        <div class="table-container glass-card">
+          <table class="data-table" id="products-table">
+            <thead>
+              <tr>
+                <th class="col-image">Image</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th class="col-number">Price (₹)</th>
+                <th class="col-number">Stock</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JS populates product rows here -->
+              <tr class="empty-state-row">
+                <td colspan="7">
+                  <div class="empty-state">
+                    <span class="empty-state__icon">📦</span>
+                    <p>No products yet. Add your first product!</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ───── Add / Edit Product Modal ───── -->
+  <div class="modal-overlay" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title" hidden>
+    <div class="modal-card glass-card">
+      <header class="modal-header">
+        <h2 class="modal-title" id="product-modal-title">Add Product</h2>
+        <button class="modal-close" id="product-modal-close" aria-label="Close modal">&times;</button>
+      </header>
+
+      <form id="product-form" class="modal-body" novalidate>
+        <input type="hidden" id="product-id" name="productId">
+
+        <div class="form-group">
+          <label for="product-name" class="form-label">Product Name <span class="required">*</span></label>
+          <input type="text" id="product-name" name="name" class="form-input" placeholder="e.g. Samsung Galaxy M34 5G" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="product-category" class="form-label">Category <span class="required">*</span></label>
+            <select id="product-category" name="category" class="form-select" required>
+              <option value="">Select category</option>
+              <option value="Smartphones">Smartphones</option>
+              <option value="Earphones & Headphones">Earphones &amp; Headphones</option>
+              <option value="Smart Watches">Smart Watches</option>
+              <option value="Chargers & Cables">Chargers &amp; Cables</option>
+              <option value="Cases & Screen Guards">Cases &amp; Screen Guards</option>
+              <option value="Fans">Fans</option>
+              <option value="Heaters">Heaters</option>
+              <option value="Power Banks">Power Banks</option>
+              <option value="Speakers">Speakers</option>
+              <option value="Other Gadgets">Other Gadgets</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="product-brand" class="form-label">Brand <span class="required">*</span></label>
+            <select id="product-brand" name="brand" class="form-select" required>
+              <option value="">Select brand</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Xiaomi">Xiaomi</option>
+              <option value="Redmi">Redmi</option>
+              <option value="Realme">Realme</option>
+              <option value="Oppo">Oppo</option>
+              <option value="Vivo">Vivo</option>
+              <option value="OnePlus">OnePlus</option>
+              <option value="Apple">Apple</option>
+              <option value="Nothing">Nothing</option>
+              <option value="Motorola">Motorola</option>
+              <option value="Nokia">Nokia</option>
+              <option value="iQOO">iQOO</option>
+              <option value="Poco">Poco</option>
+              <option value="Tecno">Tecno</option>
+              <option value="Infinix">Infinix</option>
+              <option value="Lava">Lava</option>
+              <option value="Micromax">Micromax</option>
+              <option value="boAt">boAt</option>
+              <option value="Noise">Noise</option>
+              <option value="Fire-Boltt">Fire-Boltt</option>
+              <option value="JBL">JBL</option>
+              <option value="Sony">Sony</option>
+              <option value="Zebronics">Zebronics</option>
+              <option value="Ambrane">Ambrane</option>
+              <option value="Portronics">Portronics</option>
+              <option value="pTron">pTron</option>
+              <option value="Syska">Syska</option>
+              <option value="Anker">Anker</option>
+              <option value="Crompton">Crompton</option>
+              <option value="Havells">Havells</option>
+              <option value="Bajaj">Bajaj</option>
+              <option value="Orient">Orient</option>
+              <option value="Usha">Usha</option>
+              <option value="Maharaja Whiteline">Maharaja Whiteline</option>
+              <option value="Orpat">Orpat</option>
+              <option value="Singer">Singer</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="product-price" class="form-label">Price (₹) <span class="required">*</span></label>
+            <input type="number" id="product-price" name="price" class="form-input" placeholder="e.g. 14999" min="0" step="1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="product-stock" class="form-label">Stock Quantity</label>
+            <input type="number" id="product-stock" name="stock" class="form-input" placeholder="e.g. 10" min="0" step="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="product-description" class="form-label">Description</label>
+          <textarea id="product-description" name="description" class="form-textarea" rows="4" placeholder="Product details, specifications…"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="product-image" class="form-label">Product Image</label>
+          <input type="file" id="product-image" name="image" class="form-input form-input--file" accept="image/*">
+        </div>
+      </form>
+
+      <footer class="modal-footer">
+        <button type="button" class="btn btn--outline" id="product-modal-cancel">Cancel</button>
+        <button type="submit" form="product-form" class="btn btn--primary" id="product-save-btn">Save Product</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ───── Delete Confirmation Modal ───── -->
+  <div class="modal-overlay" id="delete-modal" role="alertdialog" aria-modal="true" aria-labelledby="delete-modal-title" hidden>
+    <div class="modal-card modal-card--sm glass-card">
+      <header class="modal-header">
+        <h2 class="modal-title" id="delete-modal-title">Delete Product</h2>
+        <button class="modal-close" id="delete-modal-close" aria-label="Close modal">&times;</button>
+      </header>
+
+      <div class="modal-body">
+        <p class="confirm-message">Are you sure you want to delete this product? This action cannot be undone.</p>
+      </div>
+
+      <footer class="modal-footer">
+        <button type="button" class="btn btn--outline" id="delete-cancel-btn">Cancel</button>
+        <button type="button" class="btn btn--danger" id="delete-confirm-btn">Delete</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

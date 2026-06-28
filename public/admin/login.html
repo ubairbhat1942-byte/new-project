@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — Mobile Klinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-login-page">
+
+  <main class="login-container">
+    <div class="auth-card glass-card">
+      <header class="auth-card__header">
+        <h1 class="auth-card__logo">📱 Mobile Klinic Admin</h1>
+        <p class="auth-card__subtitle">Sign in to manage your shop</p>
+      </header>
+
+      <form id="login-form" class="auth-form" novalidate>
+        <div id="login-error" class="alert alert--error" role="alert" hidden>
+          <!-- JS populates error message here -->
+        </div>
+
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-input"
+            placeholder="Enter username"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            placeholder="Enter password"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full">Login</button>
+      </form>
+
+      <footer class="auth-card__footer">
+        <p class="auth-card__hint">
+          Default: <strong>towhead</strong> / <strong>mobile@klinic123</strong>
+        </p>
+        <a href="../index.html" class="auth-card__back-link">← Back to Customer Site</a>
+      </footer>
+    </div>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

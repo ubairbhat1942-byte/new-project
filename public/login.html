@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login or register at Mobile Klinic to track your repair orders and manage your account.">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Login - Mobile Klinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="body--centered">
+
+  <!-- ===== MINIMAL NAVBAR ===== -->
+  <nav class="navbar navbar--minimal" id="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mobile Klinic Home">📱 Mobile Klinic</a>
+      <a href="index.html" class="btn btn--ghost btn--sm navbar__back">← Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="auth-page">
+    <div class="auth-container">
+      <div class="auth-card glass">
+
+        <!-- Logo -->
+        <div class="auth-card__header">
+          <h1 class="auth-card__logo">📱 Mobile Klinic</h1>
+          <p class="auth-card__subtitle">Welcome back! Sign in to your account.</p>
+        </div>
+
+        <!-- Tab Toggle -->
+        <div class="auth-tabs" role="tablist" aria-label="Authentication tabs">
+          <button
+            class="auth-tabs__tab auth-tabs__tab--active"
+            id="tab-login"
+            role="tab"
+            aria-selected="true"
+            aria-controls="login-panel"
+          >Login</button>
+          <button
+            class="auth-tabs__tab"
+            id="tab-register"
+            role="tab"
+            aria-selected="false"
+            aria-controls="register-panel"
+          >Register</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div class="auth-panel" id="login-panel" role="tabpanel" aria-labelledby="tab-login">
+          <form id="login-form" class="form" novalidate>
+            <div class="form__group">
+              <label for="login-phone" class="form__label">Phone Number</label>
+              <input
+                type="tel"
+                id="login-phone"
+                name="phone"
+                class="input"
+                placeholder="Enter 10-digit phone number"
+                pattern="[0-9]{10}"
+                inputmode="numeric"
+                maxlength="10"
+                required
+                autocomplete="tel"
+              >
+            </div>
+
+            <div class="form__group">
+              <label for="login-password" class="form__label">Password</label>
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                class="input"
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+              >
+            </div>
+
+            <div class="form__error" id="login-error" role="alert" hidden></div>
+
+            <button type="submit" class="btn btn--primary btn--block">Login</button>
+          </form>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div class="auth-panel" id="register-panel" role="tabpanel" aria-labelledby="tab-register" hidden>
+          <form id="register-form" class="form" novalidate>
+            <div class="form__group">
+              <label for="register-name" class="form__label">Full Name</label>
+              <input
+                type="text"
+                id="register-name"
+                name="name"
+                class="input"
+                placeholder="Enter your full name"
+                required
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="form__group">
+              <label for="register-phone" class="form__label">Phone Number</label>
+              <input
+                type="tel"
+                id="register-phone"
+                name="phone"
+                class="input"
+                placeholder="Enter 10-digit phone number"
+                pattern="[0-9]{10}"
+                inputmode="numeric"
+                maxlength="10"
+                required
+                autocomplete="tel"
+              >
+            </div>
+
+            <div class="form__group">
+              <label for="register-password" class="form__label">Password</label>
+              <input
+                type="password"
+                id="register-password"
+                name="password"
+                class="input"
+                placeholder="Create a password"
+                minlength="6"
+                required
+                autocomplete="new-password"
+              >
+            </div>
+
+            <div class="form__group">
+              <label for="register-confirm-password" class="form__label">Confirm Password</label>
+              <input
+                type="password"
+                id="register-confirm-password"
+                name="confirmPassword"
+                class="input"
+                placeholder="Confirm your password"
+                minlength="6"
+                required
+                autocomplete="new-password"
+              >
+            </div>
+
+            <div class="form__error" id="register-error" role="alert" hidden></div>
+
+            <button type="submit" class="btn btn--primary btn--block">Create Account</button>
+          </form>
+        </div>
+
+        <!-- Admin Link -->
+        <div class="auth-card__footer">
+          <p>Are you the admin? <a href="admin/login.html" class="link">Login here</a></p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

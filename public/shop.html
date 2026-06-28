@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse smartphones, earphones, smart watches, chargers, cases and more at Mobile Klinic, Kralgund Handwara.">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Shop - Mobile Klinic | Kralgund, Handwara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mobile Klinic Home">📱 Mobile Klinic</a>
+      <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__menu" id="nav-menu">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li><a href="shop.html" class="navbar__link navbar__link--active">Shop</a></li>
+        <li><a href="repair-status.html" class="navbar__link">Repair Status</a></li>
+        <li><a href="#contact" class="navbar__link">Contact</a></li>
+        <li><a href="admin/login.html" class="navbar__link">Admin</a></li>
+      </ul>
+      <a href="login.html" class="btn btn--sm btn--primary navbar__cta" id="nav-auth-btn">Login</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Our Products</h1>
+      </div>
+    </section>
+
+    <!-- ===== FILTER BAR ===== -->
+    <section class="filter-bar" id="filter-bar">
+      <div class="container">
+        <div class="filter-bar__controls">
+          <div class="filter-bar__search">
+            <label for="search-input" class="sr-only">Search products</label>
+            <input
+              type="search"
+              id="search-input"
+              class="input input--search"
+              placeholder="Search products…"
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="filter-bar__dropdowns">
+            <div class="filter-bar__group">
+              <label for="category-filter" class="sr-only">Filter by category</label>
+              <select id="category-filter" class="input input--select">
+                <option value="all">All Categories</option>
+                <option value="smartphones">Smartphones</option>
+                <option value="earphones">Earphones &amp; Headphones</option>
+                <option value="smart-watches">Smart Watches</option>
+                <option value="chargers">Chargers &amp; Cables</option>
+                <option value="cases">Cases &amp; Screen Guards</option>
+                <option value="power-banks">Power Banks</option>
+                <option value="speakers">Speakers</option>
+                <option value="fans">Fans</option>
+                <option value="heaters">Heaters</option>
+                <option value="other">Other Gadgets</option>
+              </select>
+            </div>
+
+            <div class="filter-bar__group">
+              <label for="brand-filter" class="sr-only">Filter by brand</label>
+              <select id="brand-filter" class="input input--select">
+                <option value="all">All Brands</option>
+                <option value="samsung">Samsung</option>
+                <option value="xiaomi">Xiaomi</option>
+                <option value="redmi">Redmi</option>
+                <option value="realme">Realme</option>
+                <option value="oppo">Oppo</option>
+                <option value="vivo">Vivo</option>
+                <option value="oneplus">OnePlus</option>
+                <option value="apple">Apple</option>
+                <option value="boat">boAt</option>
+                <option value="noise">Noise</option>
+                <option value="jbl">JBL</option>
+                <option value="havells">Havells</option>
+                <option value="crompton">Crompton</option>
+                <option value="bajaj">Bajaj</option>
+              </select>
+            </div>
+
+            <div class="filter-bar__group">
+              <label for="sort-filter" class="sr-only">Sort products</label>
+              <select id="sort-filter" class="input input--select">
+                <option value="default">Default</option>
+                <option value="price-low">Price: Low → High</option>
+                <option value="price-high">Price: High → Low</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Chips -->
+        <div class="category-chips" id="category-chips" role="tablist" aria-label="Category quick filters">
+          <button class="chip chip--active" role="tab" aria-selected="true" data-category="all">All</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="smartphones">📱 Smartphones</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="earphones">🎧 Earphones</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="smart-watches">⌚ Watches</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="chargers">🔌 Chargers</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="cases">🛡️ Cases</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="speakers">🔊 Speakers</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="fans">🌀 Fans</button>
+          <button class="chip" role="tab" aria-selected="false" data-category="heaters">🔥 Heaters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRODUCT GRID ===== -->
+    <section class="section" id="products-section">
+      <div class="container">
+        <div class="grid grid--products" id="products-grid">
+          <!-- Product cards rendered by JS. Template:
+          <div class="card card--product" data-id="">
+            <div class="card__image"><img src="" alt=""></div>
+            <div class="card__body">
+              <span class="card__brand badge badge--primary"></span>
+              <h3 class="card__title"></h3>
+              <p class="card__price">₹</p>
+              <p class="card__stock">In Stock</p>
+            </div>
+          </div>
+          -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="products-empty" hidden>
+          <span class="empty-state__icon">📦</span>
+          <p class="empty-state__text">No products found</p>
+          <p class="empty-state__hint">Try adjusting your filters or search query.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading" id="products-loading" hidden>
+          <div class="spinner" aria-label="Loading products"></div>
+          <p>Loading products…</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="container footer__inner footer__inner--compact">
+      <p class="footer__text">📱 Mobile Klinic · Kralgund, Handwara · <a href="tel:+917006330436" class="footer__link">7006330436</a></p>
+      <p>&copy; 2026 Mobile Klinic. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

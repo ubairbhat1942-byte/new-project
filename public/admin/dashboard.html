@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Mobile Klinic Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-page">
+
+  <div class="admin-layout">
+    <!-- ───── Sidebar ───── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__logo">📱 Mobile Klinic</span>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Admin navigation">
+        <ul class="sidebar__menu">
+          <li class="sidebar__item sidebar__item--active">
+            <a href="dashboard.html" class="sidebar__link" aria-current="page">
+              <span class="sidebar__icon">📊</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="products.html" class="sidebar__link">
+              <span class="sidebar__icon">📦</span> Products
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="repairs.html" class="sidebar__link">
+              <span class="sidebar__icon">🔧</span> Repairs
+            </a>
+          </li>
+          <li class="sidebar__item sidebar__item--divider">
+            <a href="../index.html" class="sidebar__link">
+              <span class="sidebar__icon">🌐</span> Customer Site
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <p class="sidebar__user">Logged in as <strong>Towhead</strong></p>
+        <button id="logout-btn" class="btn btn--outline btn--sm btn--full">Logout</button>
+      </div>
+    </aside>
+
+    <!-- ───── Main Content ───── -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <h1 class="admin-header__title">Welcome back, Towhead! 👋</h1>
+      </header>
+
+      <!-- Stats Grid -->
+      <section class="stats-grid" id="stats-grid" aria-label="Key metrics">
+        <article class="stat-card glass-card" id="stat-products">
+          <span class="stat-card__icon">📦</span>
+          <div class="stat-card__body">
+            <p class="stat-card__value">0</p>
+            <p class="stat-card__label">Total Products</p>
+          </div>
+        </article>
+
+        <article class="stat-card glass-card" id="stat-active-repairs">
+          <span class="stat-card__icon">🔧</span>
+          <div class="stat-card__body">
+            <p class="stat-card__value">0</p>
+            <p class="stat-card__label">Active Repairs</p>
+          </div>
+        </article>
+
+        <article class="stat-card glass-card" id="stat-completed">
+          <span class="stat-card__icon">✅</span>
+          <div class="stat-card__body">
+            <p class="stat-card__value">0</p>
+            <p class="stat-card__label">Completed Repairs</p>
+          </div>
+        </article>
+
+        <article class="stat-card glass-card" id="stat-customers">
+          <span class="stat-card__icon">👥</span>
+          <div class="stat-card__body">
+            <p class="stat-card__value">0</p>
+            <p class="stat-card__label">Total Customers</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="quick-actions" aria-label="Quick actions">
+        <h2 class="section-title">Quick Actions</h2>
+        <div class="quick-actions__grid">
+          <a href="products.html" class="quick-action-card glass-card">
+            <span class="quick-action-card__icon">📦</span>
+            <span class="quick-action-card__label">Add New Product</span>
+          </a>
+          <a href="repairs.html" class="quick-action-card glass-card">
+            <span class="quick-action-card__icon">🔧</span>
+            <span class="quick-action-card__label">New Repair Order</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Recent Repairs -->
+      <section class="recent-repairs" aria-label="Recent repairs">
+        <h2 class="section-title">Recent Repairs</h2>
+        <div class="table-container glass-card">
+          <table class="data-table" id="recent-repairs">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Device</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JS populates the last 5 repairs here -->
+              <tr class="empty-state-row">
+                <td colspan="4">
+                  <div class="empty-state">
+                    <p>No recent repairs to display.</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

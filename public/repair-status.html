@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track the status of your mobile repair at Mobile Klinic, Kralgund Handwara. See real-time updates from received to ready for pickup.">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Repair Status - Mobile Klinic | Kralgund, Handwara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mobile Klinic Home">📱 Mobile Klinic</a>
+      <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__menu" id="nav-menu">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li><a href="shop.html" class="navbar__link">Shop</a></li>
+        <li><a href="repair-status.html" class="navbar__link navbar__link--active">Repair Status</a></li>
+        <li><a href="#help" class="navbar__link">Contact</a></li>
+        <li><a href="admin/login.html" class="navbar__link">Admin</a></li>
+      </ul>
+      <div class="navbar__right">
+        <span class="navbar__user" id="nav-user-name" hidden></span>
+        <a href="login.html" class="btn btn--sm btn--primary navbar__cta" id="nav-auth-btn">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Track Your Repair</h1>
+        <p class="page-header__desc">View the real-time status of your device repair.</p>
+      </div>
+    </section>
+
+    <!-- ===== LOGIN PROMPT (shown when not logged in) ===== -->
+    <section class="section" id="login-prompt">
+      <div class="container">
+        <div class="prompt-card glass">
+          <span class="prompt-card__icon">🔒</span>
+          <h2 class="prompt-card__title">Please login to view your repair status</h2>
+          <p class="prompt-card__desc">Sign in with your phone number to see your active repair orders and their progress.</p>
+          <a href="login.html" class="btn btn--primary btn--lg">Login to Continue</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REPAIRS CONTAINER (shown when logged in) ===== -->
+    <section class="section" id="repairs-section" hidden>
+      <div class="container">
+        <div class="repairs-list" id="repairs-container">
+          <!-- Repair cards rendered by JS. Template:
+
+          <article class="card card--repair" data-repair-id="">
+            <div class="card__header">
+              <h2 class="card__device-name">Samsung Galaxy M34</h2>
+              <span class="badge badge--status" data-status="repairing">Repairing</span>
+            </div>
+
+            <div class="card__body">
+              <div class="card__detail">
+                <span class="card__label">Issue</span>
+                <p class="card__value card__issue">Screen cracked, display not working</p>
+              </div>
+              <div class="card__meta">
+                <div class="card__detail">
+                  <span class="card__label">Date Submitted</span>
+                  <time class="card__value card__date-submitted" datetime="">June 20, 2026</time>
+                </div>
+                <div class="card__detail">
+                  <span class="card__label">Expected Completion</span>
+                  <time class="card__value card__date-expected" datetime="">June 25, 2026</time>
+                </div>
+                <div class="card__detail">
+                  <span class="card__label">Estimated Cost</span>
+                  <p class="card__value card__cost">₹2,500</p>
+                </div>
+              </div>
+
+              <div class="timeline" aria-label="Repair progress">
+                <div class="timeline__step timeline__step--completed" data-step="received">
+                  <span class="timeline__dot"></span>
+                  <span class="timeline__label">Received</span>
+                </div>
+                <div class="timeline__step timeline__step--completed" data-step="diagnosing">
+                  <span class="timeline__dot"></span>
+                  <span class="timeline__label">Diagnosing</span>
+                </div>
+                <div class="timeline__step timeline__step--active" data-step="repairing">
+                  <span class="timeline__dot"></span>
+                  <span class="timeline__label">Repairing</span>
+                </div>
+                <div class="timeline__step" data-step="testing">
+                  <span class="timeline__dot"></span>
+                  <span class="timeline__label">Testing</span>
+                </div>
+                <div class="timeline__step" data-step="ready">
+                  <span class="timeline__dot"></span>
+                  <span class="timeline__label">Ready for Pickup</span>
+                </div>
+              </div>
+
+              <div class="card__notes">
+                <h3 class="card__notes-heading">Shopkeeper Notes</h3>
+                <p class="card__notes-content">Replacement screen ordered, expected delivery by tomorrow.</p>
+              </div>
+            </div>
+          </article>
+
+          -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="repairs-empty" hidden>
+          <span class="empty-state__icon">🔧</span>
+          <p class="empty-state__text">No repair orders found</p>
+          <p class="empty-state__hint">Visit our shop to get started!</p>
+          <a href="index.html#contact" class="btn btn--outline btn--sm">Find Our Shop</a>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading" id="repairs-loading" hidden>
+          <div class="spinner" aria-label="Loading repair orders"></div>
+          <p>Loading your repairs…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HELP / CONTACT ===== -->
+    <section class="section section--alt" id="help">
+      <div class="container">
+        <div class="help-card glass">
+          <h2 class="help-card__title">Need Help?</h2>
+          <p class="help-card__text">Call us at <a href="tel:+917006330436" class="link link--highlight">7006330436</a> or send us a message on WhatsApp.</p>
+          <div class="help-card__actions">
+            <a href="tel:+917006330436" class="btn btn--outline btn--sm">📞 Call Now</a>
+            <a href="https://wa.me/917006330436" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner footer__inner--compact">
+      <p class="footer__text">📱 Mobile Klinic · Kralgund, Handwara · <a href="tel:+917006330436" class="footer__link">7006330436</a></p>
+      <p>&copy; 2026 Mobile Klinic. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
